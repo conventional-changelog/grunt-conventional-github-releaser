@@ -1,0 +1,13 @@
+sudo: false
+language: node_js
+node_js:
+  - 'iojs'
+  - '0.12'
+  - '0.10'
+before_script:
+  - git config --global user.name 'Travis-CI'
+  - git config --global user.email 'dummy@example.org'
+after_script: NODE_ENV=test grunt sendCoverallsInfo
+env:
+  global:
+    - secure: UE8iVn5qhBu5dHAcSgellS0BXUk4DtLZ7RGw/ar3htChAfVsclhHf28cBmERvkxncIsqxccWEp4l2+h8l+Su7xGza/uViKh0ls8OcK65pEowCyn4nefP/fkEKtmagbutnJ2Ha9xz6+3c1eKqc1LQOr2SnWsJcXNIPMOpz48rYqDlO51CssSJnAOBI5m5MW9V03F9nc88vZOrSnkmgPUG6ZAEffKc48yr0YJcicCvPXIge32xRknAfQrL6/WyiB/SJoaGOlV5pa/uEDPDM/OjEIPHrSZUdUyi6OG5mnlzsc22YHkxGieStlZdVR7CKcsN69XRPzb+/MKKtCttg/B//TFG++dFw1lpijgJHmDF6LMakVzKyX1RTIs5Sdq7xFd4xfs+2XRPNOI1EGSsEyWSBXrTkXXGxkeqCv9wtzGvamETl5W1dYdDUnK8BcIaQXAwVkCUFFJk9Jny5/gyoQO5Xv6FGmoDi9nBuwZWLM768w77DdXDT5X3nZIwwWjz/bUiAqtBYWtN+eH5eEyWt8vd09BfBBEKzECyIYuj/GCAk/R70gxhl4ncZVzPuQ0uyFYGhyd2yI/X5sxWTfTXT3c9D4N8ttDvJnCAUkFb5BuyzIIIt9THe9le+sVzEeJ0GF3XX9daxZrNMnGxh9afwZkLOkzIrcrk2qu0XiBOMlThw14=
