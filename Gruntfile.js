@@ -29,7 +29,7 @@ module.exports = function(grunt) {
       tests: ['test/*.js']
     },
     conventionalGithubReleaser: {
-      test: {
+      all: {
         options: {
           auth: {
             type: 'oauth',
@@ -107,6 +107,7 @@ module.exports = function(grunt) {
   grunt.loadTasks('tasks');
 
   grunt.registerTask('lint', ['jshint', 'jscs']);
+  grunt.registerTask('conventionalGithubReleaser:test', ['conventionalGithubReleaser:all']);
   grunt.registerTask('test', ['lint', 'conventionalGithubReleaser:test', 'nodeunit']);
   grunt.registerTask('coverage', ['clean', 'instrument', 'reloadTasks', 'conventionalGithubReleaser:test', 'storeCoverage', 'makeReport']);
   grunt.registerTask('sendCoverallsInfo', ['coverage', 'coveralls', 'clean']);
