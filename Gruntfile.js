@@ -28,8 +28,20 @@ module.exports = function(grunt) {
     nodeunit: {
       tests: ['test/*.js']
     },
-    conventionalGithubReleaser: {
+    githubRemoveAllReleases: {
       all: {
+        options: {
+          auth: {
+            type: 'oauth',
+            token: process.env.GRUNT_CONVENTIONAL_GITHUB_RELEASER_TOKEN
+          },
+          owner: 'stevemaotest',
+          repo: 'grunt-conventional-github-releaser-test'
+        }
+      }
+    },
+    conventionalGithubReleaser: {
+      success: {
         options: {
           auth: {
             type: 'oauth',
@@ -39,6 +51,33 @@ module.exports = function(grunt) {
             pkg: {
               path: 'test/fixtures/_package.json'
             }
+          }
+        }
+      },
+      fail: {
+        options: {
+          auth: {
+            type: 'oauth',
+            token: process.env.GRUNT_CONVENTIONAL_GITHUB_RELEASER_TOKEN
+          },
+          changelogOpts: {
+            pkg: {
+              path: 'test/fixtures/_package.json'
+            }
+          }
+        }
+      },
+      both: {
+        options: {
+          auth: {
+            type: 'oauth',
+            token: process.env.GRUNT_CONVENTIONAL_GITHUB_RELEASER_TOKEN
+          },
+          changelogOpts: {
+            pkg: {
+              path: 'test/fixtures/_package.json'
+            },
+            allBlocks: true
           }
         }
       },
@@ -107,7 +146,7 @@ module.exports = function(grunt) {
   grunt.loadTasks('tasks');
 
   grunt.registerTask('lint', ['jshint', 'jscs']);
-  grunt.registerTask('conventionalGithubReleaser:test', ['conventionalGithubReleaser:all']);
+  grunt.registerTask('conventionalGithubReleaser:test', ['githubRemoveAllReleases', 'conventionalGithubReleaser:success', 'conventionalGithubReleaser:fail', 'conventionalGithubReleaser:both']);
   grunt.registerTask('test', ['lint', 'conventionalGithubReleaser:test', 'nodeunit']);
   grunt.registerTask('coverage', ['clean', 'instrument', 'reloadTasks', 'conventionalGithubReleaser:test', 'storeCoverage', 'makeReport']);
   grunt.registerTask('sendCoverallsInfo', ['coverage', 'coveralls', 'clean']);
