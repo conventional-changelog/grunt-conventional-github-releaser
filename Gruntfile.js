@@ -153,9 +153,8 @@ module.exports = function(grunt) {
   grunt.registerTask('default', ['lint', 'coverage', 'clean']);
   grunt.registerTask('release', 'bump, GitHub release and publish to npm.', function(type) {
     grunt.task.run([
-      'bump:' + (type || 'patch') + ':bump-only',
+      'bump:' + (type || 'patch'),
       'conventionalGithubReleaser:release',
-      'bump-commit',
       'npm-publish'
     ]);
   });
