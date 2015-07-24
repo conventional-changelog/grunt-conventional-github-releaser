@@ -77,7 +77,7 @@ module.exports = function(grunt) {
             pkg: {
               path: 'test/fixtures/_package.json'
             },
-            allBlocks: true
+            releaseCount: 0
           }
         }
       },
