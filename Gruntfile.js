@@ -1,5 +1,7 @@
 'use strict';
 module.exports = function(grunt) {
+  var token = process.env.TEST_GRUNT_CONVENTIONAL_GITHUB_RELEASER_TOKEN;
+
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     clean: {
@@ -33,7 +35,7 @@ module.exports = function(grunt) {
         options: {
           auth: {
             type: 'oauth',
-            token: process.env.GRUNT_CONVENTIONAL_GITHUB_RELEASER_TOKEN
+            token: token
           },
           owner: 'stevemaotest',
           repo: 'grunt-conventional-github-releaser-test'
@@ -45,7 +47,7 @@ module.exports = function(grunt) {
         options: {
           auth: {
             type: 'oauth',
-            token: process.env.GRUNT_CONVENTIONAL_GITHUB_RELEASER_TOKEN
+            token: token
           },
           changelogOpts: {
             pkg: {
@@ -58,7 +60,7 @@ module.exports = function(grunt) {
         options: {
           auth: {
             type: 'oauth',
-            token: process.env.GRUNT_CONVENTIONAL_GITHUB_RELEASER_TOKEN
+            token: token
           },
           changelogOpts: {
             pkg: {
@@ -71,7 +73,7 @@ module.exports = function(grunt) {
         options: {
           auth: {
             type: 'oauth',
-            token: process.env.GRUNT_CONVENTIONAL_GITHUB_RELEASER_TOKEN
+            token: token
           },
           changelogOpts: {
             pkg: {
